@@ -16,6 +16,7 @@ class Text
                               "2. Information\n" +
                               "3. Quit");
             Console.Write("Your input: ");
+            //Checks which choice you made or if it is incorect
             switch (Console.ReadLine())
             {
                 case "1":
@@ -47,6 +48,7 @@ class Text
     }
     public int Directions(string choice1, string choice2)
     { 
+        //declare a varible to keep the while loop going forever until you have made a choice
         bool down = false;
         while (!down)
         {
@@ -65,6 +67,7 @@ class Text
                 case "leave":
                     Environment.Exit(0);
                     break;
+                //Writes out that you have done somthing wrong
                 default:
                     Console.WriteLine("Your input can only contain 1 or 2, press any key to try again");
                     Console.ReadKey();
@@ -79,7 +82,8 @@ class Text
 
     }
 
-    static public void Figthing(Character enemy)
+    //Funktion for writing out who you have enterd combat with
+    static public void Figthing(Entities enemy)
     {
         Console.Clear();
         Console.WriteLine($"You have entered combat with {enemy.name}");    

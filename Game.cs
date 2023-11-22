@@ -6,27 +6,30 @@ using System.Threading.Tasks;
 
 class Game
 {
-    
+
     static public void Run()
     {
         Text text = new();
         bool exitGame = false;
-        bool back;
+        int counter = 0;
 
         while (!exitGame)
         {
-            back = false;
             text.Menu();
-            while (!back)
+            //While the player has not reached 20 total crossroads
+            while (counter != 20)
             {
+                //Gives the user two different choices an easy and a hard
                 switch (text.Directions("easy", "hard"))
                 {
+                    //Go back to the menu
                     case 0:
-                        back = true;
+                        counter = 20;
                         break;
+                    //Easy choice
                     case 1:
-                        Character enemy = new("Goblin", 5, 1);
-                        Character player = new("Player", 20, 3);
+                        Entities enemy = Entities.Goblin();
+                        Entities player = new("Player", 20, 3);
                         for (int i = 0; i < 3; i++)
                         {
                             enemy.health = enemy.maxHealth;
@@ -41,21 +44,31 @@ class Game
                                 Console.Clear();
                                 Console.WriteLine("You died");
                                 Console.ReadKey();
+                                break;
                             }
                         }
                         Console.Clear();
-                        Console.WriteLine("You killed all enemys");
+                        //Checks if the player is alive or not
+                        if (player.health > 0)
+                        {
+                            Console.WriteLine("You killed all enemys");
+                        }
+                        else
+                        {
+                            Console.WriteLine("You failed");
+                        }
                         Console.ReadLine();
                         break;
+                    //Hard choice
                     case 2:
 
                         break;
                     default:
                         break;
                 }
+                counter++;
                 Console.Clear();
             }
-        }        
+        }
     }
 }
-
